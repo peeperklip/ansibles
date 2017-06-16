@@ -6,9 +6,9 @@ Vagrant.configure(2) do |config|
     config.vm.box_check_update = true
 
     config.vm.network "private_network", ip: "192.168.33.10"
-    config.vm.synced_folder ".", "/vagrant"
+    config.vm.synced_folder "../", "/vagrant"
 
-    config.vm.synced_folder "./var", "/vagrant/var",
+    config.vm.synced_folder "../var", "/vagrant/var",
         :owner => 'vagrant',
         :group => 'www-data',
         :mount_options => ["dmode=775","fmode=666"]
