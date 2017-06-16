@@ -1,0 +1,23 @@
+---
+- name: Setup a basic webserver for Symfony 3
+  hosts: all
+  tasks:
+    - name: "Install packages"
+      apt: name={{item}} state="installed"
+      become: true
+      with_items:
+      - nginx
+      - php7.1-fpm
+      - php7.1-mysql
+      - php7.1-xml
+      - php7.1-cli
+      - mysql-server
+
+    - name: "Copy config file"
+      copy: src=serverconfig dest=/etc/nginx/sites-available/default
+      become: true
+
+    - name: "Restart NGINX"
+      service: name=nginx state=restarted
+      become: true
+
