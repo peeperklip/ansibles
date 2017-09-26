@@ -3,32 +3,17 @@ My Vagrant file + Ansible scripts to setup a web server with Nginx and PHP 7.1
 
 ###Setup
 * Make sure vagrant and ansible are installed
-* Add vagrant/.vagrant/ to the .gitignore
-* Get the scripts, add the vagrant box and start vagrant:
-```sh
-$ git submodule add git@github.com:peeperklip/setupSymfony3.git vagrant
-$ vagrant box add ubuntu/trusty64
-$ cd vagrant
-$ vagrant up
-```
+* Add .vagrant/ to the .gitignore of your project
+* Download this project als .ZIP
+* Extract said .ZIP in your project
 * Add this line to the host file of the host machine:
 ```
 192.168.33.10 vagrant.dev
 ```
+Make sure the Vagrantfile and ansible directory are in the root of the project.
+Now all you have to do is to `vagrant up` in the terminal.
 You should now be able to access the Symfony app by going to `http://vagrant.dev` on the host machine
 
-You can also copy the contents of the vagrant directory to the
-project root and modify the Vagrantfile to have the synced folders be `"./"` and `"./var"`.
-Just make sure you get rid of the `vagrant/.vagrant/` directory first. This way you can run vagrant simply by doing:
-```sh
-$ vagrant up
-```
-instead of:
-```sh
-$ cd vagrant
-$ vagrant up
-$ cd ..
-```
 
 ### Included packages
 * nginx

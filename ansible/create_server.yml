@@ -1,5 +1,5 @@
 ---
-- name: Setup a basic webserver for Symfony 3
+- name: Setup a basic webserver for Symfony 2/3
   hosts: all
   tasks:
     - name: "Install packages"
@@ -20,4 +20,3 @@
     - name: "Restart NGINX"
       service: name=nginx state=restarted
       become: true
-
