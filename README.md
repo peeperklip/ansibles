@@ -1,7 +1,7 @@
 # Set up a basic web server for Symfony 3
 My Vagrant file + Ansible scripts to setup a web server with Nginx and PHP 7.1
 
-###Setup
+### Setup
 * Make sure vagrant and ansible are installed
 * Add .vagrant/ to the .gitignore of your project
 * Download this project als .ZIP
