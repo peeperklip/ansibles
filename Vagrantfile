@@ -2,7 +2,7 @@
 # vi: set ft=ruby :
 
 Vagrant.configure(2) do |config|
-    config.vm.box = "ubuntu/trusty64"
+    config.vm.box = "ubuntu/xenial64"
     config.vm.box_check_update = true
 
     config.vm.network "private_network", ip: "192.168.33.10"
@@ -12,10 +12,6 @@ Vagrant.configure(2) do |config|
         :owner => 'vagrant',
         :group => 'www-data',
         :mount_options => ["dmode=775","fmode=666"]
-
-    config.vm.provision "shell", inline: "sudo apt-get update -y"
-    config.vm.provision "shell", inline: "sudo apt-get install python-software-properties -y"
-    config.vm.provision "shell", inline: "sudo add-apt-repository ppa:ondrej/php -y"
 
     config.vm.provision "shell", inline: "sudo apt-get update -y"
     config.vm.provision "shell", inline: "sudo apt-get upgrade -y"
