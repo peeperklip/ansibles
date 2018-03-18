@@ -1,5 +1,5 @@
-# Set up a basic web server for Symfony 3
-My Vagrant file + Ansible scripts to setup a web server with Nginx and PHP 7.1
+# Set up a basic web server for Symfony 4
+My Vagrant file + Ansible scripts to setup a web server with Nginx and PHP 7.2
 
 ### Setup
 * Make sure vagrant and ansible are installed
@@ -17,8 +17,8 @@ You should now be able to access the Symfony app by going to `http://vagrant.dev
 
 ### Included packages
 * nginx
-* php7.1-fpm
-* php7.1-mysql
-* php7.1-xml
-* php7.1-cli
+* php7.2-fpm
+* php7.2-mysql
+* php7.2-xml
+* php7.2-cli
 * mysql-server
