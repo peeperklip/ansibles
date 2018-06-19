@@ -1,2 +1,4 @@
 /.vagrant
 /skeleton/
+*.log
+create_sf_project/*.retry
