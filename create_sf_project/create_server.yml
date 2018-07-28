@@ -1,16 +1,16 @@
 ---
-- name: Setup a basic webserver for Symfony 2/3
+- name: "Create a simple LEMP stack webserver for Symfony 4"
   hosts: all
   tasks:
     - name: "Install packages"
-      apt: name={{item}} state="installed"
+      apt: name={{item}} state="present"
       become: true
       with_items:
       - nginx
-      - php7.1-fpm
-      - php7.1-mysql
-      - php7.1-xml
-      - php7.1-cli
+      - php7.2-fpm
+      - php7.2-mysql
+      - php7.2-xml
+      - php7.2-cli
       - mysql-server
 
     - name: "Copy config file"
