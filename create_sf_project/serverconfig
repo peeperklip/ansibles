@@ -1,5 +1,5 @@
 server {
-    server_name vagrant.dev;
+    server_name vagrant.local;
     root /vagrant/public;
 
     location / {
@@ -12,7 +12,7 @@ server {
         fastcgi_param SCRIPT_FILENAME $realpath_root$fastcgi_script_name;
         fastcgi_param DOCUMENT_ROOT $realpath_root;
     }
-    location ~ ^/app\.php(/|$) {
+    location ~ ^/index\.php(/|$) {
         fastcgi_pass unix:/var/run/php/php7.2-fpm.sock;
         fastcgi_split_path_info ^(.+\.php)(/.*)$;
         include fastcgi_params;
