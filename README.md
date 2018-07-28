@@ -13,7 +13,7 @@ My Vagrant file + Ansible scripts to setup a web server with Nginx and PHP 7.2
 ```
 Make sure the Vagrantfile and ansible directory are in the root of the project.
 Now all you have to do is to `vagrant up` in the terminal.
-You should now be able to access the Symfony app by going to `http://vagrant.local` on the host machine or simply visit the above mentioned ip address.
+You should now be able to access the Symfony app by going to `vagrant.local` on the host machine or simply visit the above mentioned ip address.
 
 Ubuntu 16.04 (Xenial) is used along with the following packages: 
 * nginx
