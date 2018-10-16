@@ -19,3 +19,7 @@
         dest: /vagrant_dev
         force: yes
         version: master
+    - name: Run composer install
+      composer:
+        command: install
+        working_dir: /vagrant_dev
