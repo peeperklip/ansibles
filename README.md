@@ -73,3 +73,6 @@ for a complete set of ansible arguments see: https://docs.ansible.com/ansible/de
 ```bash
 ansible-playbook -i inventory/inv_file path_to_playbook.yml
 ```
+# Available playbooks:
+* playbooks/update_packages.yml to update the packages
+* playbooks/create_sf_project/create_server.yml To create a web server (needs to be ran after create packages)
