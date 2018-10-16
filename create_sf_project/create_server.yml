@@ -1,6 +1,6 @@
 ---
 - name: "Create a simple LEMP stack webserver for Symfony 4"
-  hosts: all
+  hosts: webservers
   tasks:
     - name: "Install packages"
       apt: name={{item}} state="present"

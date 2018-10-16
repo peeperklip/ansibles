@@ -58,7 +58,7 @@ Find the line that says: [127.0.0.1]:2222 and remove it. This line starts with [
 
 Ping to make sure that Ansible can connect
 ```bash
-ansible vagrant -m ping -i inv_file
+ansible vagrant -m ping -i inventory/inv_file
 ```
 The desired outcome of this command is:
 ```
@@ -68,3 +68,8 @@ vagrant_box | SUCCESS => {
 }
 ```
 for a complete set of ansible arguments see: https://docs.ansible.com/ansible/devel/user_guide/intro_inventory.html#list-of-behavioral-inventory-parameters
+
+# To run an Ansible playbook:
+```bash
+ansible-playbook -i inventory/inv_file path_to_playbook.yml
+```
