@@ -1,7 +1,18 @@
 ---
-- hosts: webserver
+- hosts: webservers
   name: Deploy Symfony
   tasks:
+    - name: Create Destination directory for deploy
+      become: true
+      file:
+        path: /vagrant_dev
+        state: directory
+    - name: set user and group
+      become: true
+      file:
+        path: /vagrant_dev
+        owner: vagrant
+        group: www-data
     - name: Deploy Symfony using git
       git:
         repo: https://github.com/symfony/demo
