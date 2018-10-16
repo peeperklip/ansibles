@@ -15,6 +15,10 @@
         path: /vagrant_dev
         owner: vagrant
         group: www-data
+    - name: Remove pre existing vendor directory
+      file:
+        path: /vagrant_dev/vendor
+        state: absent
     - name: Deploy Symfony using git
       git:
         repo: https://github.com/symfony/demo
