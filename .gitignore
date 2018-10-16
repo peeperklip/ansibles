@@ -3,3 +3,4 @@
 *.log
 create_sf_project/*.retry
 inventory/private
+.idea/
