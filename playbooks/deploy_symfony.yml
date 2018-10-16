@@ -1,6 +1,8 @@
 ---
 - hosts: webservers
   name: Deploy Symfony
+  environment:
+    APP_ENV: test
   tasks:
     - name: Create Destination directory for deploy
       become: true
