@@ -1,0 +1,10 @@
+---
+- hosts: webserver
+  name: Deploy Symfony
+  tasks:
+    - name: Deploy Symfony using git
+      git:
+        repo: https://github.com/symfony/demo
+        dest: /vagrant_dev
+        force: yes
+        version: master
