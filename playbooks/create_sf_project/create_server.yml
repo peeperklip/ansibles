@@ -1,5 +1,5 @@
 ---
-- name: "Create a simple LEMP stack webserver for Symfony 4"
+- name: "Create a LEMP stack web server for Symfony 4"
   hosts: webservers
   become: true
   environment:

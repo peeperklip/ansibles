@@ -7,35 +7,35 @@
     - name: Create Destination directory for deploy
       become: true
       file:
-        path: /vagrant_dev
+        path: "{{ deploy_path }}"
         state: directory
     - name: set user and group
       become: true
       file:
-        path: /vagrant_dev
+        path: "{{ deploy_path }}"
         owner: vagrant
         group: www-data
     - name: Remove pre existing vendor directory
       file:
-        path: /vagrant_dev/vendor
+        path: "{{deploy_path}}/vendor"
         state: absent
     - name: Deploy Symfony using git
       git:
         repo: https://github.com/symfony/demo
-        dest: /vagrant_dev
+        dest: "{{ deploy_path }}"
         force: yes
         version: master
     - name: Fix file permissions
       become: true
       file:
         recurse: yes
-        path: /vagrant_dev/var
+        path: "{{ deploy_path }}/var"
         owner: vagrant
         group: www-data
     - name: Run composer install
       shell: "composer install"
       args:
-        chdir: /vagrant_dev
+        chdir: "{{ deploy_path }}"
 # This fails for some reason...
 #    - name: Run composer install
 #      composer:
