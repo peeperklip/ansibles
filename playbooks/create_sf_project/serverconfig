@@ -1,6 +1,6 @@
 server {
     server_name vagrant.local;
-    root /vagrant/public;
+    root /vagrant_dev/public;
 
     location / {
         try_files $uri /index.php$is_args$args;
