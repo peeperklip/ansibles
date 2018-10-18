@@ -22,6 +22,8 @@
       - unzip
       - php7.2-zip
       - php-curl
+      - php7.2-intl
+      - php7.2-apcu
     - name: Run apt-get update
       apt:
         update_cache: yes

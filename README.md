@@ -16,12 +16,20 @@ Now all you have to do is to `vagrant up` in the terminal.
 You should now be able to access the Symfony app by going to `vagrant.local` on the host machine or simply visit the above mentioned ip address.
 
 Ubuntu 16.04 (Xenial) is used along with the following packages: 
-* nginx
-* php7.2-fpm
-* php7.2-mysql
-* php7.2-xml
-* php7.2-cli
-* mysql-server
+- Nginx
+- Php7.2-fpm
+- Php7.2-mysql
+- Php7.2-xml
+- Php7.2-cli
+- Php-sqlite3
+- Php7.2-mbstring
+- Mysql-server
+- Zip
+- Unzip
+- Php7.2-zip
+- Php-curl
+- Php7.2-intl
+- Php7.2-apcu
 
 # Usage
 ## Bring the vagrant vm up by doing:

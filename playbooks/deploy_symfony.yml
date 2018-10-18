@@ -25,7 +25,19 @@
         dest: /vagrant_dev
         force: yes
         version: master
+    - name: Fix file permissions
+      become: true
+      file:
+        recurse: yes
+        path: /vagrant_dev/var
+        owner: vagrant
+        group: www-data
     - name: Run composer install
-      composer:
-        command: install
-        working_dir: /vagrant_dev
+      shell: "composer install"
+      args:
+        chdir: /vagrant_dev
+# This fails for some reason...
+#    - name: Run composer install
+#      composer:
+#        command: install
+#        working_dir: /vagrant_dev
