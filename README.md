@@ -38,7 +38,7 @@ Vagrant up
 ```
 ## Try to ssh into the vagrant box using the following command:
 ```bash
-ssh vagrant@127.0.0.1 -p 2222 -i ssh vagrant@127.0.0.1 -p 2222 -i .vagrant/machines/default/virtualbox/private_key
+vagrant ssh
 ```
 
 ## Troubleshooting:
@@ -64,6 +64,10 @@ nano ~/.ssh/known_hosts
 ```
 Find the line that says: [127.0.0.1]:2222 and remove it. This line starts with [127.0.0.1]:2222 and ends with an equal sign "="
 
+Wrong ssh paramters
+If you run into this Ansible error: `fatal: [vagrant_box]: UNREACHABLE! => {"changed": false, "msg": "Failed to connect to the host via ssh...`
+See if you can run `vagrant ssh` if this works, run `vagrant ssh-config` and modify the inventory/inv_file to be inline with the output of that command
+
 Ping to make sure that Ansible can connect
 ```bash
 ansible vagrant -m ping -i inventory/inv_file
@@ -84,3 +88,4 @@ ansible-playbook -i inventory/inv_file path_to_playbook.yml
 # Available playbooks:
 * playbooks/update_packages.yml to update the packages
 * playbooks/create_sf_project/create_server.yml To create a web server (needs to be ran after create packages)
+* playbooks/deploy_symfony.yml
