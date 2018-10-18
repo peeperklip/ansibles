@@ -88,4 +88,4 @@ ansible-playbook -i inventory/inv_file path_to_playbook.yml
 # Available playbooks:
 * playbooks/update_packages.yml to update the packages
 * playbooks/create_sf_project/create_server.yml To create a web server (needs to be ran after create packages)
-* playbooks/deploy_symfony.yml
+* playbooks/deploy_symfony.yml (make sure that `deploy_path` variable is defined. Example in `inventory/inv_file`)
