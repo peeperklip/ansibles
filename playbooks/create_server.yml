@@ -53,7 +53,7 @@
     - name: "Copy NGINX config file"
       when: type == "nginx"
       template:
-        src: ../templates/serverconfig
+        src: ../templates/serverconfig/nginx
         dest: /etc/nginx/sites-available/default
     - name: "Install the webserver"
       apt: name="{{ "nginx" if type == "nginx" else "apache2" }}" state="present"

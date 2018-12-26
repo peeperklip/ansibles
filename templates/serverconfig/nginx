@@ -23,6 +23,6 @@ server {
     location ~ \.php$ {
         return 404;
     }
-    error_log {{error_log_file | mandatory }};
+    error_log {{ error_log_file | mandatory }};
     access_log {{ access_log_file | mandatory }};
 }
