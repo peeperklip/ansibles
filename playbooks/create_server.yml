@@ -4,6 +4,10 @@
   become: true
   environment:
     APP_ENV: test
+  vars_prompt:
+    - name: "type"
+      prompt: "Use nginx or apache as a web server"
+      private: no
   tasks:
     - apt_repository:
         repo: ppa:ondrej/php
@@ -11,7 +15,6 @@
       apt: name={{item}} state="present"
       with_items:
       - mysql-server
-      - nginx
       - php-curl
       - php-sqlite3
       - php7.2-apcu
@@ -41,7 +44,23 @@
       file:
         path: /var/tmp/composer/composer-setup.php
         state: absent
-    - name: "Copy config file"
-      copy: src=serverconfig dest=/etc/nginx/sites-available/default
+
+    - name: Fail if unexpected value choice for webserver
+      fail:
+        msg: "choose nginx or apache. Input was {{ type }}"
+      when: type != "nginx" and type != "apache"
+
+    - name: "Copy NGINX config file"
+      when: type == "nginx"
+      template:
+        src: ../templates/serverconfig
+        dest: /etc/nginx/sites-available/default
+    - name: "Install the webserver"
+      apt: name="{{ "nginx" if type == "nginx" else "apache2" }}" state="present"
+
+    - name: "Restart Apache"
+      service: name=apache2 state=restarted
+      when: type == "apache"
     - name: "Restart NGINX"
       service: name=nginx state=restarted
+      when: type == "nginx"

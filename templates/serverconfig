@@ -1,6 +1,6 @@
 server {
-    server_name vagrant.local;
-    root /vagrant_dev/public;
+    server_name {{ server_name | mandatory }};
+    root {{ root | mandatory }};
 
     location / {
         try_files $uri /index.php$is_args$args;
@@ -23,7 +23,6 @@ server {
     location ~ \.php$ {
         return 404;
     }
-
-    error_log /var/log/nginx/project_error.log;
-    access_log /var/log/nginx/project_access.log;
+    error_log {{error_log_file | mandatory }};
+    access_log {{ access_log_file | mandatory }};
 }
