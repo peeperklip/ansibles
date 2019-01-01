@@ -2,6 +2,10 @@
   apt:
     name: apache2
     state: present
+- name: "Install php module for apache"
+  apt:
+    name: libapache2-mod-php7.2
+    state: present
 - name: "Restart Apache"
   service:
     name: apache2

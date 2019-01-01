@@ -12,22 +12,6 @@
       private: no
       default: "{{ type }}"
   tasks:
-    - name: "get config for apache2"
-      vars:
-        error_log_location: "/var/log/apache2/project_error.log"
-        access_log_location: "/var/log/apache2/project_access.log"
-      import_tasks: partials/apache.yml
-      when: type == "apache2"
-    - name: "get config for nginx"
-      vars:
-        error_log_location: "/var/log/nginx/project_error.log"
-        access_log_location: "/var/log/nginx/project_access.log"
-      include: partials/nginx.yml
-      when: type == "nginx"
-    - name: "Fail if unexpected value choice for web server"
-      fail:
-        msg: "Incorrect input. Expected: apache or nginx; instead got: {{ type }}"
-      when: type != "nginx" and type != "apache2"
     - apt_repository:
         repo: ppa:ondrej/php
     - name: "Install packages"
@@ -46,6 +30,22 @@
       - php7.2-zip
       - unzip
       - zip
+    - name: "get config for apache2"
+      vars:
+        error_log_location: "/var/log/apache2/project_error.log"
+        access_log_location: "/var/log/apache2/project_access.log"
+      import_tasks: partials/apache.yml
+      when: type == "apache2"
+    - name: "get config for nginx"
+      vars:
+        error_log_location: "/var/log/nginx/project_error.log"
+        access_log_location: "/var/log/nginx/project_access.log"
+      include: partials/nginx.yml
+      when: type == "nginx"
+    - name: "Fail if unexpected value choice for web server"
+      fail:
+        msg: "Incorrect input. Expected: apache or nginx; instead got: {{ type }}"
+      when: type != "nginx" and type != "apache2"
     - name: Run apt-get update
       apt:
         update_cache: yes
