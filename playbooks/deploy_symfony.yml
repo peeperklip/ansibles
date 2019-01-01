@@ -36,8 +36,3 @@
       shell: "composer install"
       args:
         chdir: "{{ deploy_path }}"
-# This fails for some reason...
-#    - name: Run composer install
-#      composer:
-#        command: install
-#        working_dir: /vagrant_dev
