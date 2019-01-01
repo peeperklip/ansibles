@@ -11,15 +11,23 @@
       prompt: "Choose what to use for a web server: (nginx/apache2)"
       private: no
       default: "{{ type }}"
-    - name: "error_log_location"
-      prompt: "Where to store the error log file?"
-      private: no
-      default: "/var/log/{{type}}/project_error.log"
-    - name: "access_log_location"
-      prompt: "Where to store the error log file?"
-      private: no
-      default: "/var/log/{{type}}/project_access.log"
   tasks:
+    - name: "get config for apache2"
+      vars:
+        error_log_location: "/var/log/nginx/project_error.log"
+        access_log_location: "/var/log/nginx/project_access.log"
+      import_tasks: partials/apache.yml
+      when: type == "apache2"
+    - name: "get config for nginx"
+      vars:
+        error_log_location: "/var/log/nginx/project_error.log"
+        access_log_location: "/var/log/nginx/project_access.log"
+      include: partials/nginx.yml
+      when: type == "nginx"
+    - name: "Fail if unexpected value choice for web server"
+      fail:
+        msg: "Incorrect input. Expected: apache or nginx; instead got: {{ type }}"
+      when: type != "nginx" and type != "apache2"
     - apt_repository:
         repo: ppa:ondrej/php
     - name: "Install packages"
@@ -55,33 +63,3 @@
       file:
         path: /var/tmp/composer/composer-setup.php
         state: absent
-    - name: Fail if unexpected value choice for webserver
-      fail:
-        msg: "Incorrect input. Expected: apache or nginx; instead got: {{ type }}"
-      when: type != "nginx" and type != "apache2"
-    - name: "Install the web server"
-      apt: name="{{ "nginx" if type == "nginx" else "apache2" }}" state="present"
-    - name: "Copy NGINX config file"
-      when: type == "nginx"
-      template:
-        src: ../templates/serverconfig/nginx
-        dest: /etc/nginx/sites-available/default
-    - name: "Copy Apache2 config file"
-      when: type == "apache2"
-      template:
-        src: ../templates/serverconfig/apache2.conf
-        dest: /etc/apache2/sites-available/000-default.conf
-
-    - name: "Create dir for project"
-      file:
-        path: /vagrant_dev/public
-        mode: 0644
-#        owner: apache
-#        group: www-data
-        state: directory
-    - name: "Restart Apache"
-      service: name=apache2 state=restarted
-      when: type == "apache2"
-    - name: "Restart NGINX"
-      service: name=nginx state=restarted
-      when: type == "nginx"

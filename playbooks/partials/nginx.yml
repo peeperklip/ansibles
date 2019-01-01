@@ -1,0 +1,12 @@
+- name: "Install the web server"
+  apt:
+    name: nginx
+    state: present
+- name: "Restart Apache"
+  service:
+    name: nginx
+    state: restarted
+- name: "Copy NGINX config file"
+  template:
+    src: ../templates/serverconfig/nginx
+    dest: /etc/nginx/sites-available/default

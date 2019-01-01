@@ -1,0 +1,12 @@
+- name: "Copy Apache2 config file"
+  template:
+    src: ../templates/serverconfig/apache2.conf
+    dest: /etc/apache2/sites-available/000-default.conf
+- name: "Install the web server"
+  apt:
+    name: apache2
+    state: present
+- name: "Restart Apache"
+  service:
+    name: apache2
+    state: restarted
