@@ -14,8 +14,8 @@
   tasks:
     - name: "get config for apache2"
       vars:
-        error_log_location: "/var/log/nginx/project_error.log"
-        access_log_location: "/var/log/nginx/project_access.log"
+        error_log_location: "/var/log/apache2/project_error.log"
+        access_log_location: "/var/log/apache2/project_access.log"
       import_tasks: partials/apache.yml
       when: type == "apache2"
     - name: "get config for nginx"
