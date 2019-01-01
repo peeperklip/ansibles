@@ -36,13 +36,3 @@
       shell: "composer install"
       args:
         chdir: "{{ deploy_path }}"
-    - name: "Restart Apache"
-      service:
-        name: nginx
-        state: restarted
-      become: true
-# This fails for some reason...
-#    - name: Run composer install
-#      composer:
-#        command: install
-#        working_dir: /vagrant_dev

@@ -89,3 +89,9 @@ ansible-playbook -i inventory/inv_file path_to_playbook.yml
 * playbooks/update_packages.yml to update the packages
 * playbooks/create_server.yml To create a web server (needs to be ran after create packages)
 * playbooks/deploy_symfony.yml (make sure that `deploy_path` variable is defined. Example in `inventory/inv_file`)
+
+# Restarting nginx/apache
+```bash
+ansible webservers -i ./inventory/inv_file  -m service -a "name=nginx state=restarted" --become
+ansible webservers -i ./inventory/inv_file  -m service -a "name=apache state=restarted" --become
+```
