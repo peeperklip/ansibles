@@ -6,5 +6,3 @@ ansible_python_interpreter=/usr/bin/python3
 deploy_path=/vagrant_dev
 server_name=vagrant.local
 root=vagrant_dev/public
-error_log_file=/var/log/nginx/project_error.log
-access_log_file=/var/log/nginx/project_access.log
