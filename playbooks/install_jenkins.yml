@@ -1,0 +1,27 @@
+---
+- name: set up Jenkins
+  hosts: webservers
+  become: true
+  tasks:
+# java has to be installed manually. For now
+#    - name: "Install Java JRE"
+#      apt_repository:
+#        repo: 'ppa:webupd8team/java'
+#    - name: "Install Java"
+#      apt:
+#        name: "oracle-java8-installer"
+#        state: present
+    - name: "Add key"
+      apt_key:
+        url: "https://pkg.jenkins.io/debian/jenkins.io.key"
+        state: present
+        validate_certs: false #make configurable
+    - name: "Add entry to sources.list"
+      apt_repository:
+        repo: deb https://pkg.jenkins.io/debian binary/
+        state: present
+    - name: "Install Jenkins"
+      apt:
+        name: jenkins
+        state: present
+        update_cache: true
