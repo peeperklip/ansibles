@@ -1,0 +1,65 @@
+---
+- name: "Create a LEMP stack web server for Symfony 4"
+  hosts: webservers
+  become: true
+  environment:
+    APP_ENV: test
+  vars:
+    type: nginx
+  vars_prompt:
+    - name: "type"
+      prompt: "Choose what to use for a web server: (nginx/apache2)"
+      private: no
+      default: "{{ type }}"
+  tasks:
+    - apt_repository:
+        repo: ppa:ondrej/php
+    - name: "Install packages"
+      apt: name={{item}} state="present"
+      with_items:
+      - mysql-server
+      - php-curl
+      - php-sqlite3
+      - php7.2-apcu
+      - php7.2-cli
+      - php7.2-fpm
+      - php7.2-intl
+      - php7.2-mbstring
+      - php7.2-mysql
+      - php7.2-xml
+      - php7.2-zip
+      - unzip
+      - zip
+    - name: "get config for apache2"
+      vars:
+        error_log_location: "/var/log/apache2/project_error.log"
+        access_log_location: "/var/log/apache2/project_access.log"
+      import_tasks: partials/apache.yml
+      when: type == "apache2"
+    - name: "get config for nginx"
+      vars:
+        error_log_location: "/var/log/nginx/project_error.log"
+        access_log_location: "/var/log/nginx/project_access.log"
+      include: partials/nginx.yml
+      when: type == "nginx"
+    - name: "Fail if unexpected value choice for web server"
+      fail:
+        msg: "Incorrect input. Expected: apache or nginx; instead got: {{ type }}"
+      when: type != "nginx" and type != "apache2"
+    - name: Run apt-get update
+      apt:
+        update_cache: yes
+    - name: Create temp directory for Composer
+      file:
+        path: /var/tmp/composer
+        state: directory
+    - name: Get Composer
+      get_url:
+        url: https://getcomposer.org/installer
+        dest: /var/tmp/composer/composer-setup.php
+    - name: Install composer
+      shell: "php /var/tmp/composer/composer-setup.php --install-dir=/usr/local/bin --filename=composer"
+    - name: Delete composer installer
+      file:
+        path: /var/tmp/composer/composer-setup.php
+        state: absent
