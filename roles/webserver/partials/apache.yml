@@ -1,0 +1,16 @@
+- name: "Install the web server"
+  apt:
+    name: apache2
+    state: present
+- name: "Install php module for apache"
+  apt:
+    name: libapache2-mod-php7.2
+    state: present
+- name: "Restart Apache"
+  service:
+    name: apache2
+    state: restarted
+- name: "Copy Apache2 config file"
+  template:
+    src: ../templates/serverconfig/apache2.conf
+    dest: /etc/apache2/sites-available/000-default.conf

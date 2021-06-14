@@ -1,0 +1,8 @@
+- name: "Install the web server"
+  apt:
+    name: nginx
+    state: present
+- name: "Copy NGINX config file"
+  template:
+    src: ../templates/serverconfig/nginx
+    dest: /etc/nginx/sites-available/default
