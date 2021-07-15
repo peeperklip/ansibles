@@ -1,0 +1,16 @@
+---
+- name: "Create web server"
+  hosts: webservers
+  become: true
+  environment:
+    APP_ENV: test
+  vars:
+    type: nginx
+  vars_prompt:
+    - name: "type"
+      prompt: "Choose what to use for a web server: (nginx/apache2)"
+      private: no
+      default: "{{ type }}"
+  roles:
+    - role: '../roles/webserver'
+    - role: '../roles/deploy_demo'
