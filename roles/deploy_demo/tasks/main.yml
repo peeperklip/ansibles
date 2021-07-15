@@ -14,12 +14,14 @@
     file:
       path: "{{deploy_path}}/vendor"
       state: absent
+    become: false
   - name: Deploy Symfony using git
     git:
       repo: https://github.com/symfony/demo
       dest: "{{ deploy_path }}"
       force: yes
       version: main
+    become: false
   - name: Fix file permissions
     become: true
     file:
@@ -31,3 +33,10 @@
     shell: "composer install"
     args:
       chdir: "{{ deploy_path }}"
+    become: false
+  - name: "Restart NGINX"
+    service:
+      name: nginx
+      state: restarted
+    become: true
+
