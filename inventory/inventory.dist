@@ -1,0 +1,6 @@
+[webservers]
+
+[webservers:vars]
+deploy_path=/var/www/html
+server_name=mywebsite.home
+root=/var/www/html
