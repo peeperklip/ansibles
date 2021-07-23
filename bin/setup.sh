@@ -29,6 +29,7 @@ wget https://github.com/peeperklip/ansibles/archive/master.zip
 unzip master.zip
 rm master.zip
 rm ansibles-master/README.md
+rm ansibles-master/.gitignore
 mv ansibles-master/* .
 rmdir ansibles-master
 
