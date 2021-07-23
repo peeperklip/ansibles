@@ -1,0 +1,6 @@
+---
+- name: "apt upgrade"
+  hosts: webservers
+  become: true
+  roles:
+    - role: '../roles/apt'
