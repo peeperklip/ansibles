@@ -5,7 +5,6 @@
   - name: "Install packages"
     apt: name={{item}} state="present"
     with_items:
-    - mysql-server
     - php-curl
     - php-sqlite3
     - php8.1-apcu
@@ -23,7 +22,7 @@
     vars:
       error_log_location: "/var/log/nginx/project_error.log"
       access_log_location: "/var/log/nginx/project_access.log"
-    include: partials/nginx.yml
+    import_tasks: partials/nginx.yml
   - name: Run apt-get update
     apt:
       update_cache: yes
