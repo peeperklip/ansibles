@@ -2,12 +2,5 @@
 - name: "Create web server"
   hosts: webservers
   become: true
-  vars:
-    type: nginx
-  vars_prompt:
-    - name: "type"
-      prompt: "Choose what to use for a web server: (nginx/apache2)"
-      private: no
-      default: "{{ type }}"
   roles:
     - role: '../roles/webserver'

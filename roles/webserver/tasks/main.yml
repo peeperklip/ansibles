@@ -8,33 +8,22 @@
     - mysql-server
     - php-curl
     - php-sqlite3
-    - php7.4-apcu
-    - php7.4-cli
-    - php7.4-fpm
-    - php7.4-intl
-    - php7.4-mbstring
-    - php7.4-mysql
-    - php7.4-xml
-    - php7.4-zip
-    - php7.4-sqlite3
+    - php8.1-apcu
+    - php8.1-cli
+    - php8.1-fpm
+    - php8.1-intl
+    - php8.1-mbstring
+    - php8.1-mysql
+    - php8.1-xml
+    - php8.1-zip
+    - php8.1-sqlite3
     - unzip
     - zip
-  - name: "get config for apache2"
-    vars:
-      error_log_location: "/var/log/apache2/project_error.log"
-      access_log_location: "/var/log/apache2/project_access.log"
-    import_tasks: partials/apache.yml
-    when: type == "apache2"
   - name: "get config for nginx"
     vars:
       error_log_location: "/var/log/nginx/project_error.log"
       access_log_location: "/var/log/nginx/project_access.log"
     include: partials/nginx.yml
-    when: type == "nginx"
-  - name: "Fail if unexpected value choice for web server"
-    fail:
-      msg: "Incorrect input. Expected: apache or nginx; instead got: {{ type }}"
-    when: type != "nginx" and type != "apache2"
   - name: Run apt-get update
     apt:
       update_cache: yes
