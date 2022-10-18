@@ -21,7 +21,7 @@ In case you want to contribute commits
 * playbooks/apt_upgrade.yml
     * Used for the basic system maintenance
 * playbooks/create_webserver.yml
-    * sets up an NGINX or Apache2 webserver
+    * sets up an NGINX  webserver
 * playbooks/demo_file.yml
     * deploys a symfony demo project (Will be deleted in the near future)
 
@@ -34,19 +34,19 @@ most roles will have their actions prefixed in their name with what they do en e
 
 ### Available playbooks:
 - Unzip
-- Php7.4-cli
-- Php7.4-intl
+- Php8.1-cli
+- Php8.1-intl
 - Php-sqlite3
-- Php7.4-xml
+- Php8.1-xml
 - Mysql-server
-- Php7.4-mbstring
+- Php8.1-mbstring
 - Zip
 - Nginx
 - Php-curl
-- Php7.4-zip
-- Php7.4-fpm
-- Php7.4-apcu
-- Php7.4-mysql
+- Php8.1-zip
+- Php8.1-fpm
+- Php8.1-apcu
+- Php8.1-mysql
 
 
 ## Testing & development using vagrant

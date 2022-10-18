@@ -4,3 +4,6 @@
 deploy_path=/var/www/html
 server_name=mywebsite.home
 root=/var/www/html
+git_repository=
+file_owner=
+file_group=
