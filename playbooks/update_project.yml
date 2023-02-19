@@ -1,0 +1,6 @@
+---
+- name: "Pull latest changes"
+  hosts: webservers
+  become: false
+  roles:
+    - role: '../roles/update_project'

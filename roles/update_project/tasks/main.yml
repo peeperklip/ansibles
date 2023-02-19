@@ -1,0 +1,16 @@
+---
+- name:
+  ansible.builtin.file:
+    path: "{{ dest }}"
+    state: directory
+    mode: '0755'
+- name: Pull the latest changes
+  ansible.builtin.git:
+    repo: "ssh:// {{ repo }}"
+    dest: "{{ dest }}"
+    key_file: "{{ key }}"
+    force: yes
+    update: yes
+    single_branch: yes
+    version: master
+    accept_hostkey: yes

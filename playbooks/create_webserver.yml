@@ -4,3 +4,4 @@
   become: true
   roles:
     - role: '../roles/webserver'
+    - role: '../roles/update_project'
