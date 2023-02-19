@@ -2,5 +2,8 @@
 /skeleton/
 *.log
 *.retry
-inventory/private
+inventory
 .idea/
+
+!inventory/vagrant_demo_inventory
+!inventory/inventory.dist
