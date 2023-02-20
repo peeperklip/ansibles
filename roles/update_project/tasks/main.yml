@@ -6,11 +6,10 @@
     mode: '0755'
 - name: Pull the latest changes
   ansible.builtin.git:
-    repo: "ssh:// {{ repo }}"
+    repo: "{{ repo }}"
     dest: "{{ dest }}"
-    key_file: "{{ key }}"
     force: yes
     update: yes
     single_branch: yes
-    version: master
+    version: main
     accept_hostkey: yes
