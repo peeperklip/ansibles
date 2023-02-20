@@ -1,3 +1,7 @@
-#git pull
-#go build
-#run tests
+---
+- name: "Install go"
+  hosts: webservers
+  become: false
+  roles:
+    - role: '../roles/update_project'
+    - role: '../roles/go_make'

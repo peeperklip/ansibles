@@ -1,2 +1,5 @@
 ---
 - name: "Finish deploy of golang project"
+  ansible.builtin.shell: "/usr/local/go/bin/go build"
+  args:
+    chdir: "{{ dest }}"
