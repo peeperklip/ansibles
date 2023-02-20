@@ -1,0 +1,35 @@
+---
+- name: Remove existing versions
+  become: true
+  ansible.builtin.file:
+    path: /usr/local/go
+    state: absent
+
+- name: Ensure dir exists
+  become: true
+  ansible.builtin.file:
+    path: /usr/local/go
+    state: directory
+    mode: '0755'
+
+- name: Go get go
+  become: true
+  ansible.builtin.get_url:
+    url: "https://go.dev/dl/go{{ version }}.linux-amd64.tar.gz"
+    dest: "."
+
+- name: Extract go binaries
+  ansible.builtin.unarchive:
+    remote_src: yes
+    src: "./go{{ version }}.linux-amd64.tar.gz"
+    dest: /usr/local
+    extra_opts:
+      - s/^xxx/yyy/fff
+- name: Ensure SELinux is set to enforcing mode
+  ansible.builtin.lineinfile:
+    path: .bashrc
+    line: export PATH=$PATH:/usr/local/go/bin
+    state: present
+
+- name: Source bashrc
+  shell: . .bashrc

@@ -20,7 +20,7 @@
       repo: {{git_repository}}
       dest: "{{ deploy_path }}"
       force: yes
-      version: main
+      version: main.yml
     become: false
   - name: Fix file permissions
     become: true

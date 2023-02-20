@@ -1,0 +1,6 @@
+---
+- name: "Install go"
+  hosts: webservers
+  become: false
+  roles:
+    - role: '../roles/install_go'

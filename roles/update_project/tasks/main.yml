@@ -1,5 +1,5 @@
 ---
-- name:
+- name: "Ensure dir exists, clone or pull the project"
   ansible.builtin.file:
     path: "{{ dest }}"
     state: directory
@@ -11,5 +11,5 @@
     force: yes
     update: yes
     single_branch: yes
-    version: main
+    version: main.yml
     accept_hostkey: yes
