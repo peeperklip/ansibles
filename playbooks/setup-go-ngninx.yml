@@ -1,0 +1,7 @@
+---
+- name: "Create a webserver for a Go project"
+  hosts: webservers
+  become: true
+  roles:
+    - role: '../roles/go-webserver'
+    - role: '../roles/reload_services'

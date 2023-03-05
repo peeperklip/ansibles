@@ -3,5 +3,5 @@
   hosts: webservers
   become: false
   roles:
-    - role: '../roles/update_project'
-    - role: '../roles/go_make'
+    - '../roles/update_project'
+    - '../roles/go_make'

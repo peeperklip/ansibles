@@ -1,0 +1,10 @@
+---
+- name: "Create reload_services unit file"
+  ansible.builtin.template:
+    src: templates/nginx_conf
+    dest: /etc/nginx/sites-available/{{ domain }}
+- name: "Symlink the config"
+  ansible.builtin.file:
+    src: /etc/nginx/sites-available/{{ domain }}
+    dest: /etc/nginx/sites-enabled/{{ domain }}
+    state: link
