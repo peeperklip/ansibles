@@ -1,0 +1,11 @@
+[Unit]
+Description= {{ description | mandatory }}
+
+[Service]
+Type={{ type | default("simple") }}
+Restart= {{ restart | default("always")}}
+RestartSec= {{ restart_time | default(5) }}s
+ExecStart={{ exec_start | mandatory }}
+
+[Install]
+WantedBy=multi-user.target

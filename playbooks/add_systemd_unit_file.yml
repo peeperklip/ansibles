@@ -1,0 +1,6 @@
+---
+- name: "Add a systemd unit file"
+  hosts: webservers
+  become: true
+  roles:
+    - role: '../roles/add_systemd_unit_file'

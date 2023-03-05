@@ -1,0 +1,6 @@
+---
+- name: "Create systemd unit file"
+  ansible.builtin.template:
+    src: templates/unitfile
+    dest: /lib/systemd/system/{{ description }}.service
+
